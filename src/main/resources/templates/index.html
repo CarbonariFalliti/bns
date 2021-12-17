@@ -4,18 +4,131 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/"/>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-    <title>Document</title>
+    <meta name="description" content="Home page di Cascina Marcella, su questa pagina inizierai a scoprire la storia, i prodotti e i nostri valori.">
+    <meta name="keywords" content="Agricoltura, prodotti bio, verdura, frutta, uova, consegne a domicilio">
+    <meta name="author" content="Edoardo Orta">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;500;700&family=WindSong:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/egg.svg">
+    <title>Cascina Marcella | Natura a domicilio</title>
 </head>
 <body>
-    <div class="container unauthenticated">
-        With GitHub: <a href="/oauth2/authorization/github">click here</a>
+    <header id="navbarContainer">
+    </header>
+
+    <main class="container-fluid">
+        <div class="hero">
+
+        </div>
+        
+        <!-- Singola slide -->
+        <div class="row slide">
+            <div class="col-md-8">
+                <div class="row">
+                        <div class="col-md-6 textContainer">
+                            <h2 class="title">
+                                L'Azienda
+                            </h2>
+                            <hr>
+                            <p>
+                                Da sempre nel cuore del Monferrato e del Pianalto Astigiano produce prodotti orticoli freschi e genuini, legandosi strettamente al territorio. 
+                            </p>
+                            <p>
+                                L'Azienda nasceva con nonno Francesco, detto "Cichin", quando, dopo la Seconda Guerra Mondiale, Cichin decise di comprare la "Cascina Marcella" e dedicarsi alla vita agreste.
+                            </p>
+                            <p>
+                                L'azienda può essere visitata facilmente, previo appuntamento, e si possono effettuare acquisti in loco.
+                            </p>
+                            <button class="btn rounded-pill" >
+                                    <a href="azienda">
+                                    Scopri di più!
+                                </a>
+                            </button>
+                        </div>
+                        <div class="col-md-6 imgContainer">
+                            <div class="imgSlide" id="imgAzienda">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <!-- fine singola slide -->
+    <!-- Singola slide -->
+    <div class="row slide">
+        <div class="col-md-8">
+            <div class="row">
+                    <div class="col-md-6 textContainer">
+                        <h2 class="title">
+                            I Prodotti
+                        </h2>
+                        <hr>
+                        <p>
+                            I nostri prodotti sono cresciuti in base al periodo e alla stagione di crescita, in modo naturale e senza prodotti chimici.
+                        </p>
+                        <p>
+                            All'aspetto dimostrano l'utilizzo nullo di fitofarmaci, di conseguenza veramente biologico ma al gusto sono imbattibili e si sente la ricchezza del territorio da cui provengono.
+                        </p>
+                        <p>
+                            Abbiamo quasi ogni tipo di frutta e verdura di stagione e se anche non la trovassi subito, non esitare a contattarci e proveremo a piantarla per il prossimo anno!
+                        </p>
+                        <button class="btn rounded-pill" >
+                            <a href="prodotti">
+                            Scopri di più!
+                        </a>
+                    </button>
+                    </div>
+                    <div class="col-md-6 imgContainer">
+                        <div class="imgSlide" id="imgProdotti">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
-    <div class="container authenticated" style="display:none">
-        Logged in as: <span id="user"></span>
-    </div>
+    <!-- fine singola slide -->
+    <!-- Singola slide -->
+        <div class="row slide">
+            <div class="col-md-8">
+                <div class="row">
+                        <div class="col-md-6 textContainer">
+                            <h2 class="title">
+                                Consegne a domicilio
+                            </h2>
+                            <hr>
+                            <p>
+                                Ci siamo da sempre voluti legare a doppio filo alle persone che vivono il nostro territorio, per questo Orta Luigi, detto "Gino", decise di iniziare a portare i prodotti direttamente a casa loro e senza sovrapprezzi.
+                            </p>
+                            <p>
+                                Ad oggi consegnamo dal lunedì al sabato ad Asti e sulla strada che ci unisce.
+                            </p>
+                            <button class="btn rounded-pill" >
+                                <a href="consegne">
+                                Scopri di più!
+                            </a>
+                        </button>
+                        </div>
+                        <div class="col-md-6 imgContainer">
+                            <div class="imgSlide" id="imgConsegne">
+
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <!-- fine singola slide -->
+    </main>
+
+    <footer id="footerContainer"> 
+        
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="js/nav.js"></script>
 </body>
 </html>
