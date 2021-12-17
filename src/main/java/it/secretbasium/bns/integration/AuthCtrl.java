@@ -11,5 +11,13 @@ public class AuthCtrl{
     public String index() {
         return "index";
     }
+    @GetMapping("/not-restricted")
+    public String notRestricted() {
+        return "not-restricted";
+    }
 
+    @GetMapping("/restricted")
+    public String restricted() {
+        return "restricted";
+    }
 }
