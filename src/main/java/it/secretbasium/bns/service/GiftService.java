@@ -7,9 +7,12 @@ import it.secretbasium.bns.entities.Gift;
 public interface GiftService {
     List<Gift> getAllGifts(); 
     Gift getGiftById(String id);
-    void addGift(Gift gift);
-    void updateGift(Gift gift);
+    Gift addGift(Gift gift);
+    Gift updateGift(Gift gift);
     void deleteGift(String id);
+    List<Gift> findByGroupId(String groupId);
+    List<Gift> findByBasium(String basium);
+    List<Gift> findByBabbo(String babbo);
     
     
 }

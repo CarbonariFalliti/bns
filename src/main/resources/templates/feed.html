@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Home page di Cascina Marcella, su questa pagina inizierai a scoprire la storia, i prodotti e i nostri valori.">
+    <meta name="keywords" content="Agricoltura, prodotti bio, verdura, frutta, uova, consegne a domicilio">
+    <meta name="author" content="Edoardo Orta">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/egg.svg">
+    <title>Feed</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Benvenuto, [[${user.name}]] </h1><div class="row">
+                    
+                    <div class="col-md-8">
+                        <h2>I regali che hai effettuato:</h2>
+                        <div class="gift" th:each=" babboGift : ${babbi}">
+                            <div class="row">
+                                <div class="col">
+                                    <h3>[[${babboGift.name}]]</h3>
+                                    <p>[[${babboGift.review}]]</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>I regali che hai ricevuto:</h2>
+                        <div class="gift" th:each=" basiumGift : ${basia}">
+                            <div class="row">
+                                <div class="col">
+                                    <h3>[[${basiumGift.name}]]</h3>
+                                    <p>[[${basiumGift.review}]]</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Gli altri regali del tuo gruppo:</h2>
+                        <div class="gift" th:each=" groupGift : ${groupGifts}">
+                            <div class="row">
+                                <div class="col">
+                                    <h3>[[${groupGift.name}]]</h3>
+                                    <p>[[${groupGift.review}]]</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>Aggiungi un regalo:</h2>
+                        <form id="giftAdder" >
+                            <div class="formInput">
+                                <label for="name">Che cos'è?</label>
+                                <input type="text" name="name">
+                            </div>
+                            <div class="formInput">
+                                <label for="basium">Chi te l'ha fatto?</label>
+                                <input type="text" name="basium">
+                            </div>
+                            <div class="formInput">
+                                <label for="review">Quanto ti è piaciuto?</label>
+                                <input type="range" class="form-range" min="1" max="5" name="review">
+                            </div>
+                            <input type="hidden" name="babboId" th:value="${user.id}">
+                            <input type="submit" value="Invia">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+<script>
+    $('#giftAdder').submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: '/newgift',
+            type: 'POST',
+            data:$('#giftAdder').serialize(),
+            success:function(){
+                // Whatever you want to do after the form is successfully submitted
+            }
+        });
+    });
+</script>

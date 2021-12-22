@@ -1,0 +1,19 @@
+# spring:
+#   security:
+#     oauth2:
+#       client:
+#         registration:
+#           github:
+#             clientId: 77cdf4ecae8dcfe81463
+#             clientSecret: e1cda9954a0225544fdc90477a0774ac147daf2b
+
+
+#Google
+# spring:
+#   security:
+#     oauth2:
+#       client:
+#         registration:
+#           google:
+#             clientId: # console.developers.google.com
+#             clientSecret: # console.developers.google.com

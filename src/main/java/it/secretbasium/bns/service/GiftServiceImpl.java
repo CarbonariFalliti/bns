@@ -3,10 +3,13 @@ package it.secretbasium.bns.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import it.secretbasium.bns.dal.GiftDAO;
 import it.secretbasium.bns.entities.Gift;
 
+
+@Service
 public class GiftServiceImpl implements GiftService {
     @Autowired
     private GiftDAO repo;
@@ -23,18 +26,33 @@ public class GiftServiceImpl implements GiftService {
     }
 
     @Override
-    public void addGift(Gift gift) {
-        repo.save(gift);
+    public Gift addGift(Gift gift) {
+        return repo.save(gift);
     }
 
     @Override
-    public void updateGift(Gift gift) {
-        repo.save(gift);
+    public Gift updateGift(Gift gift) {
+        return repo.save(gift);
     }
 
     @Override
     public void deleteGift(String id) {
         repo.deleteById(id);
+    }
+
+    @Override
+    public List<Gift> findByGroupId(String groupId) {
+        return repo.findByGroupId(groupId);
+    }
+
+    @Override
+    public List<Gift> findByBasium(String basium) {
+        return repo.findByBasiumId(basium);
+    }
+
+    @Override
+    public List<Gift> findByBabbo(String babbo) {
+        return repo.findByBabboId(babbo);
     }
 
 }
