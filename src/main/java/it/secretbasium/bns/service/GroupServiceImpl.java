@@ -3,6 +3,8 @@ package it.secretbasium.bns.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +41,7 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    @JsonIgnore
     public List<Person> getMembers(String id) { 
         Group group = repo.findById(id).get();
         List<Person> members = new ArrayList();

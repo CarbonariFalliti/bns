@@ -1,5 +1,6 @@
 package it.secretbasium.bns.integration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,10 @@ public class PersonCtrl {
     public Person getPersonByName(@RequestParam(value = "name") String name) {
         return ps.getPersonByName(name);
     }
+    @GetMapping("/people/email")
+    public Person getPersonByEmail(@RequestParam(value = "email") String email) {
+        return ps.getPersonByEmail(email);
+    }
     @PostMapping("/person")
     public void addPerson(
         @RequestParam String email,
@@ -62,6 +67,20 @@ public class PersonCtrl {
     @DeleteMapping("/person")
     public void deletePerson(@RequestParam(value = "id") String id) {
         ps.deletePerson(id);
+    }
+    @PostMapping("/person-existence-in-group-check")
+    public Person checkPersonExistsAndCreate(@RequestParam String email, @RequestParam String groupId) {
+        Person p = ps.getPersonByEmail(email);
+        if (p == null) {
+            p = new Person();
+            p.setEmail(email);
+            ps.addPerson(p);
+
+        }
+        if (p.getGroupsId()==null)
+        p.setGroupsId(new ArrayList<>());
+        p.getGroupsId().add(groupId);
+        return ps.updatePerson(p);
     }
 
 }

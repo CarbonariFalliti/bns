@@ -1,11 +1,15 @@
 package it.secretbasium.bns.service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.secretbasium.bns.dal.PersonDAO;
+import it.secretbasium.bns.entities.Group;
 import it.secretbasium.bns.entities.Person;
 
 @Service
@@ -13,6 +17,8 @@ public class PersonServiceImpl implements PersonService {
     
     @Autowired
     PersonDAO repo;
+    // @Autowired
+    // GroupService groupService;
 
     @Override
     public List<Person> getAllPeople() {
@@ -50,5 +56,18 @@ public class PersonServiceImpl implements PersonService {
         return repo.findByEmail(email);
        
     }
+
+    // @Override
+   
+    // public List<Group> getGroups(String id) {
+        
+    //     Person person = repo.findById(id).get();
+    //     List<Group> groups = new ArrayList<>();
+    //     for (String groupId : person.getGroupsId()) {
+    //         groups.add(groupService.getGroupById(groupId));
+    //     }
+    //      return groups;
+        
+    // }
     
 }

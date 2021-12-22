@@ -1,6 +1,8 @@
 package it.secretbasium.bns.integration;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import it.secretbasium.bns.entities.Gift;
+import it.secretbasium.bns.entities.Group;
 import it.secretbasium.bns.entities.Person;
 import it.secretbasium.bns.service.GiftService;
 import it.secretbasium.bns.service.PersonService;
@@ -41,9 +45,9 @@ public class AuthCtrl implements ErrorController{
         System.out.println("sono in error");
         return new ModelAndView("error");
     }
-    @GetMapping("/not-restricted")
-    public String notRestricted() {
-        return "not-restricted";
+    @GetMapping("/group-registration")
+    public ModelAndView groupRegistration() {
+        return new ModelAndView("group-registration");
     }
 
     @PostMapping("/login")
@@ -84,7 +88,16 @@ public class AuthCtrl implements ErrorController{
         m.addAttribute("user", p);
         m.addAttribute("basia", gs.findByBasium(p.getId()));
         m.addAttribute("babbi", gs.findByBabbo(p.getId()));
-        m.addAttribute("groupGifts", gs.findByGroupId(null));
+        // List<Group> groups=ps.getGroups(p.getId());
+        // m.addAttribute("groups", groups);
+        // List<Gift> gifts = new ArrayList();
+        // for (Group group : groups) {
+        //     gifts.addAll(
+        //         gs.findByGroupId(group.getId())
+        //     );
+            
+        // }
+        // m.addAttribute("groupGifts", gifts);
         return new ModelAndView("feed");
     }
 }

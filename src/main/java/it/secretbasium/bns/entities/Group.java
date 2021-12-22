@@ -11,8 +11,22 @@ public class Group {
     private String id;
     private String name;
     private Integer budget;
+    private String groupEmail;
+    private String password;
     private List<String> members;
     
+    public String getGroupEmail() {
+        return groupEmail;
+    }
+    public void setGroupEmail(String groupEmail) {
+        this.groupEmail = groupEmail;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
     public String getId() {
         return id;
     }

@@ -1,6 +1,7 @@
 package it.secretbasium.bns.integration;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,18 +48,19 @@ public class GiftCtrl {
         @RequestParam String review,
 
         @RequestParam String babbo,
-        @RequestParam String basium,
-        @RequestParam String groupId,
-        @RequestParam Date date
+        @RequestParam String basiumId,
+        @RequestParam(required = false) String groupId,
+        @RequestParam(required = false) Date date 
     
         ) {
         Gift g = new Gift();
         g.setName(name);
         g.setReview(Byte.parseByte(review));
-        // g.setBabboId(ps.getPersonByName(babbo).getId());
-        // g.setBasiumId(ps.getPersonByName(basium).getId());
+        
+        g.setBabboId(babbo);
+        g.setBasiumId(basiumId);
         g.setGroupId(groupId);
-        g.setDate(date);
+        // g.setDate(Date);
         System.out.println("new gift: " + g);
         return gs.addGift(g);
     
@@ -71,13 +73,13 @@ public class GiftCtrl {
         @RequestParam String review,
 
         @RequestParam String babbo,
-        @RequestParam String basium
+        @RequestParam String basiumId
         ) {
         Gift g = gs.getGiftById(id);
         g.setName(name);
         g.setReview(Byte.parseByte(review));
-        // g.setBabboId(ps.getPersonByName(babbo).getId());
-        g.setBasiumId(id);
+        g.setBabboId(ps.getPersonByName(babbo).getId());
+        g.setBasiumId(basiumId);
         System.out.println("update gift: " + g);
         return gs.updateGift(g);
     

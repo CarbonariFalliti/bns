@@ -19,6 +19,30 @@ public class GroupCtrl {
 
     @Autowired
     GroupService groupService;
+    @Autowired
+    PersonCtrl personCtrl;
+
+    @PostMapping("/group-creator")
+    public Group createGroup(
+        @RequestParam(value = "name") String name, 
+        @RequestParam(value = "groupemail") String groupemail,
+        @RequestParam(value = "password") String password,
+        @RequestParam(value = "budget") Integer budget,
+        @RequestParam(value = "members") String[] members) {
+        
+            Group group = groupService.addGroup(new Group());
+            group.setName(name);
+            group.setGroupEmail(groupemail);
+            group.setPassword(password);
+            group.setBudget(budget);
+            List<String> memberList = new java.util.ArrayList();
+            for (String member : members) {
+                
+                memberList.add(personCtrl.checkPersonExistsAndCreate(member, group.getId()).getId());
+            }   
+            group.setMembers(memberList);
+            return group; 
+    }
 
     @GetMapping("/group")
     public Group getGroup(@RequestParam(value = "id") String id) {

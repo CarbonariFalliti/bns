@@ -1,5 +1,7 @@
 package it.secretbasium.bns.entities;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,7 +12,14 @@ public class Person {
     private String name;
     private String email;
     private String password;
+    private List<String> groupsId;
     
+    public List<String> getGroupsId() {
+        return groupsId;
+    }
+    public void setGroupsId(List<String> groupsId) {
+        this.groupsId = groupsId;
+    }
     public String getEmail() {
         return email;
     }
