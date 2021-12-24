@@ -32,8 +32,13 @@
                                     <div class="card-body">
                                         <h5 class="card-title">[[${regalo.name}]]</h5>
                                         <p class="card-text">[[${regalo.review}]]</p>
-                                        <p class="card-text"><strong>Babbo:</strong> [[${regalo.babboId}]]</p>
-                                        <p class="card-text"><strong>Basium:</strong> [[${regalo.basiumId}]] €</p>
+                                        <p class="card-text"><strong>Babbo:</strong> 
+                                            <span th:each="membro : ${members}" ><span th:if="${regalo.babboId==membro.id}"> [[${membro.name}]]</span></span>
+                                        
+                                        </p>
+                                        <p class="card-text"><strong>Basium:</strong>
+                                            <span th:each="membro : ${members}" ><span th:if="${regalo.basiumId==membro.id}"> [[${membro.name}]]</span></span>
+                                            </p>
                                         <p class="card-text"><strong>Data:</strong> [[${regalo.date}]]</p>
                                     </div>
                                 </div>
