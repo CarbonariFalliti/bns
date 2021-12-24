@@ -36,6 +36,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <hr>
                             <h2>I regali che hai ricevuto:</h2>
                             <div class="gift" th:each=" basiumGift : ${basia}">
                                 <div class="row">
@@ -45,15 +46,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <h2>Gli altri regali del tuo gruppo:</h2>
-                            <div class="gift" th:each=" groupGift : ${groupGifts}">
-                                <div class="row">
-                                    <div class="col">
-                                        <h3>[[${groupGift.name}]]</h3>
-                                        <p>[[${groupGift.review}]]</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <hr>
+                            <h2>Gruppi:</h2>
+                            <ul>
+                                <li th:each=" group : ${groups}">
+                                    <a th:href="@{'/group-feed?id='+${group.id}}">
+                                        <h2>[[${group.name}]]</h2>
+                                    </a>
+                                </li>
+                            </ul>
+                         
                         </div>
                         <div class="col-md-4">
                             <h2 class="">Aggiungi un regalo:</h2>

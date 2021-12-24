@@ -21,6 +21,7 @@ import it.secretbasium.bns.entities.Gift;
 import it.secretbasium.bns.entities.Group;
 import it.secretbasium.bns.entities.Person;
 import it.secretbasium.bns.service.GiftService;
+import it.secretbasium.bns.service.GroupService;
 import it.secretbasium.bns.service.PersonService;
 
 
@@ -30,6 +31,8 @@ public class AuthCtrl implements ErrorController{
     PersonService ps;
     @Autowired
     GiftService gs;
+    @Autowired
+    GroupService grs;
 
 
     @GetMapping("/")
@@ -88,16 +91,32 @@ public class AuthCtrl implements ErrorController{
         m.addAttribute("user", p);
         m.addAttribute("basia", gs.findByBasium(p.getId()));
         m.addAttribute("babbi", gs.findByBabbo(p.getId()));
-        // List<Group> groups=ps.getGroups(p.getId());
-        // m.addAttribute("groups", groups);
-        // List<Gift> gifts = new ArrayList();
-        // for (Group group : groups) {
-        //     gifts.addAll(
-        //         gs.findByGroupId(group.getId())
-        //     );
-            
-        // }
-        // m.addAttribute("groupGifts", gifts);
+        List<Group> groups=new ArrayList<Group>();
+        for (String gId : p.getGroupsId()) {
+            groups.add(grs.getGroupById(gId));
+        }
+        m.addAttribute("groups", groups);
         return new ModelAndView("feed");
     }
+
+    @RequestMapping(value =  "/group-feed", method ={ RequestMethod.GET}   )
+    public ModelAndView feedGroup(Model m,@RequestParam String id){
+        Group g=grs.getGroupById(id);
+        
+        m.addAttribute("group", g);
+
+        List<Person> people=new ArrayList<Person>();
+        for (String pId : g.getMembers()) {
+            people.add(ps.getPersonById(pId));
+        }
+        m.addAttribute("members", people);
+
+        List<Gift> gifts= gs.findByGroupId(g.getId());
+        m.addAttribute("gifts", gifts);
+        
+
+        return new ModelAndView("group-page");
+    }
+
 }
+

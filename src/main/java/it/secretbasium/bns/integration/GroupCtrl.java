@@ -41,7 +41,7 @@ public class GroupCtrl {
                 memberList.add(personCtrl.checkPersonExistsAndCreate(member, group.getId()).getId());
             }   
             group.setMembers(memberList);
-            return group; 
+            return groupService.updateGroup(group); 
     }
 
     @GetMapping("/group")
@@ -64,5 +64,6 @@ public class GroupCtrl {
     public List<Person> getMembers(String id) {
         return groupService.getMembers(id);
     }
+   
 
 }

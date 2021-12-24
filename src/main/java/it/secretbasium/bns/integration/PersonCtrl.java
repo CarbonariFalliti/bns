@@ -78,7 +78,8 @@ public class PersonCtrl {
 
         }
         if (p.getGroupsId()==null)
-        p.setGroupsId(new ArrayList<>());
+            p.setGroupsId(new ArrayList<>());
+        
         p.getGroupsId().add(groupId);
         return ps.updatePerson(p);
     }
