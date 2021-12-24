@@ -21,7 +21,9 @@
         <div class="container">
             <div class="row">
                 <div class="col"  th:switch="${user.name}">
-                    <h1 class="alert alert-danger rocking" th:case="Amedeo">Buon Babbo, Yellino!!</h1>
+                    <h1 class="alert alert-danger rocking" th:case="Amedeo">Buon Babbo, Yellino!!
+                        <img src="/img/sabaudo.jpg" style="width:100%" alt="regalo di Yell"/>
+                    </h1>
                     <h1 th:case="*">Benvenuto, <span class="rocking">[[${user.name}]]</span> </h1><div class="row">
                     
                         <div class="col-md-8">
