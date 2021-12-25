@@ -16,7 +16,7 @@ a:hover {
 
 header#navbarContainer {
   border-bottom: 1px solid #e5e5e5;
-  padding: 0.5em;
+  padding: 2em;
   display: flex;
   align-items: center;
   justify-content: "flex-end";
@@ -63,3 +63,12 @@ footer#footerContainer .row {
 footer#footerContainer #credits img {
   width: 80mm;
 }/*# sourceMappingURL=style.css.map */
+
+.spaced {
+  padding: 0 2em;
+  margin-bottom: 5em;
+}
+
+.form-group {
+  margin-bottom: 0.5em;
+}
