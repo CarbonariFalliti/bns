@@ -28,11 +28,11 @@
                     
                         <div class="col-md-8">
                             <h2>I regali che hai effettuato:</h2>
-                            <div class="gift" th:each=" babboGift : ${babbi}">
+                            <div class="gift" >
                                 <div class="row">
-                                    <div class="col">
-                                        <h3>[[${babboGift.name}]]</h3>
-                                        <p>[[${babboGift.review}]]</p>
+                                    <div class="col" th:each=" babboGift : ${babbi}">
+                                        <h3>[[${babboGift.name}]] <span class="text-muted"> [[${babboGift.review}]] <i class="fas fa-star"></i></span></h3>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -41,8 +41,14 @@
                             <div class="gift" th:each=" basiumGift : ${basia}">
                                 <div class="row">
                                     <div class="col">
-                                        <h3>[[${basiumGift.name}]]</h3>
-                                        <p>[[${basiumGift.review}]]</p>
+                                        <ul>
+                                            <li>
+                                                <a th:href="@{'/gift?id='+${basiumGift.id}}">
+                                                    <h3>[[${basiumGift.name}]] <span class="text-muted"> [[${basiumGift.review}]] <i class="fas fa-star"></i></span></h3>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -62,16 +68,27 @@
                             <form id="giftAdder" >
                                 <div class="formInput">
                                     <label for="name">Che cos'è?</label>
-                                    <input type="text" name="name">
-                                </div>
-                                <div class="formInput">
-                                    <label for="babbo">Chi te l'ha fatto?</label>
-                                    <input type="text" name="babbo">
+                                    <input type="text" name="name" required>
                                 </div>
                                 <div class="formInput">
                                     <label for="review">Quanto ti è piaciuto?</label>
-                                    <input type="range" class="form-range" min="1" max="5" name="review">
+                                    <input type="range" class="form-range" min="1" max="5" name="review" required>
                                 </div>
+                                <div class="formInput">
+                                    <label for="group">In che gruppo?</label>
+                                    <select name="groupId" id="groupIdSelector" required>
+                                        <option value="">Seleziona</option>
+                                        <option th:each="group : ${groups}" th:value="${group.id}">[[${group.name}]]</option>
+                                    </select>
+                                    <div class="formInput">
+                                        <label for="babbo">Chi te l'ha fatto?</label>
+                                        <select name="babboId" id="babboIdSelector" required>
+                                            <option value="">Seleziona</option>
+                                            <optgroup th:each="group : ${groups}" th:label="${group.name}">
+                                                <option th:each=" member : ${group.members}" th:value="${member}">[[${member}]]</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
                                 <input type="hidden" name="basiumId" th:value="${user.id}">
                                 <input type="submit" class="btn btn-primary" value="Invia">
                             </form>

@@ -1,6 +1,5 @@
 package it.secretbasium.bns.integration;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +36,7 @@ public class AuthCtrl implements ErrorController{
 
     @GetMapping("/")
     public ModelAndView getIndex(Model m) {
-        System.out.println("sono in index");
         ModelAndView mv = new ModelAndView("index");
-        System.out.println(mv);
         return mv;
 
     }

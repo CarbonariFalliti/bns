@@ -57,9 +57,21 @@ public class GroupCtrl {
         return groupService.addGroup(group);
     }
     @DeleteMapping("/group")
-    public void deleteGroup(String id) {
-        groupService.deleteGroup(id);
+    public void deleteGroup(String id, String password) {
+        if (groupService.getGroupById(id).getPassword().equals(password)) {
+            
+            for (String personId : groupService.getGroupById(id).getMembers()) {
+                Person p= personCtrl.getPerson(personId);
+                p.getGroupsId().remove(id);
+                personCtrl.updatePerson(p);
+                
+            }
+                
+            groupService.deleteGroup(id);
+        }
+        
     }
+
     @GetMapping("/group/members")
     public List<Person> getMembers(String id) {
         return groupService.getMembers(id);

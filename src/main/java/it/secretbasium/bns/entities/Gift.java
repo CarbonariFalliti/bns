@@ -1,6 +1,6 @@
 package it.secretbasium.bns.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,15 +17,15 @@ public class Gift {
     private String babboId;
     private String basiumId;
     private String groupId;
-    private Date date;
+    private LocalDate date;
     
     public String getId() {
         return id;
     }
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
     public String getGroupId() {

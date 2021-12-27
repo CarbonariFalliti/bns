@@ -1,8 +1,8 @@
 package it.secretbasium.bns.integration;
 
 
+
 import java.time.LocalDate;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -47,20 +47,19 @@ public class GiftCtrl {
         @RequestParam String name,
         @RequestParam String review,
 
-        @RequestParam String babbo,
+        @RequestParam String babboId,
         @RequestParam String basiumId,
-        @RequestParam(required = false) String groupId,
-        @RequestParam(required = false) Date date 
+        @RequestParam String groupId
     
         ) {
         Gift g = new Gift();
         g.setName(name);
         g.setReview(Byte.parseByte(review));
         
-        g.setBabboId(babbo);
+        g.setBabboId(babboId);
         g.setBasiumId(basiumId);
         g.setGroupId(groupId);
-        // g.setDate(Date);
+        g.setDate(LocalDate.now());
         System.out.println("new gift: " + g);
         return gs.addGift(g);
     
