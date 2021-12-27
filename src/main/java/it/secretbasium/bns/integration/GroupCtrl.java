@@ -1,5 +1,6 @@
 package it.secretbasium.bns.integration;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,5 +78,22 @@ public class GroupCtrl {
         return groupService.getMembers(id);
     }
    
+    @PostMapping("/group/update-next-date")
+    public Group updateNextDate(String id, @RequestParam(required = false) LocalDate nextDate) {
+        Group group = groupService.getGroupById(id);
+        if (group.getPassedDates()==null) {
+            group.setPassedDates(new java.util.ArrayList<LocalDate>());
+            group.getPassedDates().add(nextDate);
+        } else {
+            group.getPassedDates().add(nextDate);
+        }
+        if (nextDate == null) {
+            group.setNextDate(group.getNextDate().plusYears(1l));
+        } else {
+            group.setNextDate(nextDate);
+        }
+        
+        return groupService.updateGroup(group);
+    }
 
 }

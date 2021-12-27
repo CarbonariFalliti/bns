@@ -21,16 +21,20 @@
         
         <div class="container">
             <div class="row">
-                <div class="col-4">
+                <div class="col-md-4">
+                    <div id="Date" th:if="${group.nextDate!=null}">
+                        <h1><span id="daysToNextDate"></span> days</h1>
+                        <h2>until next meeting on <span id="nextMeeting" th:text="${group.nextDate}"></span></h2>
+                        <hr>
+                    </div>
+                </div>
+                <div class="col-md-4">
                     <h1>[[${group.name}]]</h1>
                     <p><small> <strong>Id:</strong> <span id="groupId">[[${group.id}]]</span></small></p>
                     <p><strong>Budget:</strong> [[${group.budget}]] €</p>
                     <p><strong>Email:</strong> <a th:href="@{'mailto:'+${group.groupEmail}}">[[${group.groupEmail}]]</a></p>
                 </div>
-                <div class="col-4">
-                    <!-- TODO inser statistics or something so -->
-                </div>
-                <div class="col-4">
+                <div class="col-md-4">
                     <h2>Membri:</h2>
                     <ul>
                         <li th:each=" member : ${members}">
@@ -59,7 +63,7 @@
                                                         <p class="card-text">
                                                             <strong>Babbo:</strong>
                                                             <span th:each="membro : ${members}" >
-                                                                <a th:href="@{'/member?id='+${babboId}}">
+                                                                <a th:href="@{'/member?id='+${regalo.babboId}}">
                                                                     <span th:if="${regalo.babboId==membro.id}"> [[${membro.name}]]</span>
                                                                 </a>
                                                             </span>
@@ -67,7 +71,7 @@
                                                         <p class="card-text">
                                                             <strong>Basium:</strong>
                                                             <span th:each="membro : ${members}" >
-                                                                <a th:href="@{'/member?id='+${basiumId}}"><span th:if="${regalo.basiumId==membro.id}"> [[${membro.name}]]</span></a>
+                                                                <a th:href="@{'/member?id='+${regalo.basiumId}}"><span th:if="${regalo.basiumId==membro.id}"> [[${membro.name}]]</span></a>
                                                             </span>
                                                             </p>
                                                         <p class="card-text"><strong>Data:</strong> [[${regalo.date}]]</p>
@@ -99,6 +103,28 @@
     <footer id="footerContainer"></footer>
 </body>
 <script>
+    var now = new Date();
+    var nextMeeting = new Date($("#nextMeeting").text());
+    console.log(nextMeeting);
+    var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+    var daysToNextDate = Math.round((now.getTime() - nextMeeting.getTime())/(oneDay)-1);
+    document.getElementById("daysToNextDate").innerHTML = daysToNextDate;
+    if(nextMeeting.getTime() < now.getTime()){
+        document.getElementById("Date").innerHTML = "";
+        $.ajax({
+            url: "/group/update-next-date",
+            type: "POST",
+            data: {
+                id: $("#groupId").text()
+            },
+            success: function(data){
+                console.log(data);
+            }
+        });
+    }
+
+
+
     $('#deleteGroup').click(function(){
         let result= prompt('Inserisci la password per eliminare il gruppo:','');
             

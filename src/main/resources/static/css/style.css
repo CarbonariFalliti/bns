@@ -15,6 +15,14 @@ a:hover {
 }
 
 header#navbarContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+  background-color: #b8dcf8;
+  z-index: 10;
+  max-height: 15vh;
   border-bottom: 1px solid #e5e5e5;
   padding: 0.5em;
   display: flex;
@@ -41,13 +49,25 @@ header#navbarContainer #titoloNav {
 }
 
 main {
-  padding: 3rem 0;
+  padding: 16vh 0 3rem 0;
   font-family: "Titillium Web", sans-serif;
   min-height: 90vh;
 }
+main #hero, main #Date {
+  background-image: url("/img/xmas-things.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Montserrat Alternates", sans-serif;
+}
 
 footer#footerContainer {
-  background-color: #91caf7;
+  background-color: #b8dcf8;
   border-top-left-radius: 100%;
   padding: 0.5em;
   display: flex;

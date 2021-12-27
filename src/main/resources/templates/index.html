@@ -27,6 +27,13 @@
             <div class="row">
                 <div class="col">
                     <div class="row">
+                        <div class="col" id="hero">
+                            <h1><span id="daysToXmas"></span> days</h1>
+                            <h2>until Christmas 2k<span id="nextYear"></span></h2>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
                             <div class="col-md-8">
                                 <h2 class="title">
                                     Oh Oh Oh, Merry Xmas!
@@ -86,4 +93,13 @@
     </footer>
    
 </body>
+<script>
+    var now = new Date();
+    var xmas = new Date(now.getFullYear()+1, 11, 25);
+    var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+    var daysToXmas = Math.round((now.getTime() - xmas.getTime())/(oneDay)-1);
+    document.getElementById("daysToXmas").innerHTML = daysToXmas;
+    document.getElementById("nextYear").innerHTML = (now.getFullYear() + 1)-2000;
+    
+</script>
 </html>

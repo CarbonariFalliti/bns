@@ -1,5 +1,6 @@
 package it.secretbasium.bns.entities;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -14,9 +15,23 @@ public class Group {
     private String groupEmail;
     private String password;
     private List<String> members;
+    private List<LocalDate> passedDates;
+    private LocalDate nextDate;
     
     public String getGroupEmail() {
         return groupEmail;
+    }
+    public LocalDate getNextDate() {
+        return nextDate;
+    }
+    public void setNextDate(LocalDate nextDate) {
+        this.nextDate = nextDate;
+    }
+    public List<LocalDate> getPassedDates() {
+        return passedDates;
+    }
+    public void setPassedDates(List<LocalDate> passedDates) {
+        this.passedDates = passedDates;
     }
     public void setGroupEmail(String groupEmail) {
         this.groupEmail = groupEmail;

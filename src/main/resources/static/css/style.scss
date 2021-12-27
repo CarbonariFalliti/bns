@@ -10,7 +10,7 @@ $main-font: 'Titillium Web', sans-serif;
 $rocking-font:'Rock 3D', cursive;
 $title-font: 'Montserrat Alternates', sans-serif;
 $snow-color:#91caf7;
-
+$snow-color-halfed:#b8dcf8;
 a{
   color: inherit;
   text-decoration: none;
@@ -24,6 +24,14 @@ a{
 }
 
 header#navbarContainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    background-color: $snow-color-halfed;
+    z-index: 10;
+    max-height: 15vh;
     border-bottom: 1px solid #e5e5e5;
     padding: 0.5em;
     @include dflexJustify('flex-end');
@@ -49,10 +57,20 @@ header#navbarContainer{
 
 
 main{
-    padding: 3rem 0;
+    padding: 16vh 0 3rem 0;
     font-family: $main-font;
 
     min-height: 90vh;
+    #hero, #Date{
+        background-image: url("/img/xmas-things.jpg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+        @include dflexCenter();
+        flex-direction: column;
+        font-family: $title-font;
+    }
 }
 
 
@@ -70,7 +88,7 @@ main{
 
 
 footer#footerContainer{
-    background-color: $snow-color;
+    background-color: $snow-color-halfed;
     border-top-left-radius: 100%;
     
     padding: 0.5em;

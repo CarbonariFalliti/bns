@@ -19,6 +19,7 @@ public class Gift {
     private String groupId;
     private LocalDate date;
     
+    
     public String getId() {
         return id;
     }
