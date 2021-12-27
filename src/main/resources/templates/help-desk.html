@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Edoardo Orta">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="js/nav.js"></script>    <link rel="stylesheet" href="css/style.css">    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/logo.png">
+    <title>Babbo Natale Segreto | Secret Basium </title>
+</head>
+<body>
+    <header id="navbarContainer">
+    </header>
+    <main class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="text-container">
+                        <h1>
+                            Ciao, [[${user.name}]]!
+                        </h1>
+                        <p>
+                            Questa è la tua pagina di supporto.
+                       <br>
+                            Potrai gestire i tuoi ticket, le tue richieste ecc.
+                        </p>
+                        <p>
+                            Per richiedere l'implementazione di una funzione, <strong>crea un</strong> nuovo <strong>ticket</strong> dal nostro form su questa pagina.
+                        <br>
+                            Ma ricorda che ogni singolo ticket è una <strong>funzione di base</strong>, se vuoi creare qualcosa di più complesso dovrai creare <strong>un ticket per ogni funzione</strong>.
+                        </p>
+                        <p class="lead">
+                            Ogni ticket costa 10 €. Per una priorità maggiore, il costo è più elevato.
+                        </p>
+                        <p>
+                            <strong>Per qualsiasi problema, contatta il nostro supporto.</strong>
+                        </p>
+                    </div>
+                    <form id="ticketAdder">
+                        <div class="form-group">
+                            <label for="email">Email su cui vuoi essere ricontattato:</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="ticketTitle">Nome della funzione in breve:</label>
+                            <input type="text" class="form-control" id="ticketTitle" name="title" placeholder="Titolo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ticketDescription">Descrizione:
+                                <div><small class="text-muted">Spiega chiaramente quello che vorresti venisse implementato.</small></div>
+                            </label>
+                            <textarea class="form-control" minlength="50" id="ticketDescription" rows="3" name="description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="ticketPriority">Priorità</label>
+                            <select class="form-control" name="priority" id="ticketPriority" required>
+                                <option value="LOW" selected>Bassa</option>
+                                <option value="MIDDLE">Media</option>
+                                <option value="HIGH"> Alta</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Crea ticket</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </main>
+    
+    <footer id="footerContainer"> 
+        
+    </footer>
+   
+</body>
+<script>
+    $("#ticketAdder").submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: '/ticket',
+            type: 'POST',
+            data:$('#ticketAdder').serialize(),
+            success:function(data){
+                if (data.status=='ok'){
+                    alert("Ticket creato con successo!");
+                    window.location.reload();
+                }
+                else{
+                    alert("Errore ");
+                }
+            }
+        });
+    });
+</script>
+</html>

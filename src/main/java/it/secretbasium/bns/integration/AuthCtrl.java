@@ -124,5 +124,11 @@ public class AuthCtrl implements ErrorController{
         return new ModelAndView("group-page");
     }
 
+    @RequestMapping(value =  "/tickets", method ={ RequestMethod.GET}   )
+    public ModelAndView tickets(Model m, @RequestParam String id){
+        Person p=ps.getPersonById(id);
+        m.addAttribute("user", p);
+        return new ModelAndView("help-desk");
+    }
 }
 
