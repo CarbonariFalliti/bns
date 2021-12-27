@@ -71,8 +71,14 @@
                                     <input type="text" name="name" required>
                                 </div>
                                 <div class="formInput">
-                                    <label for="review">Quanto ti è piaciuto?</label>
-                                    <input type="range" class="form-range" min="1" max="5" name="review" required>
+                                    <label for="review">Quanto ti è piaciuto? <i class="fas fa-star"></i></label>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-1">1</div>
+                                            <div class="col"><input type="range" class="form-range" min="1" max="5" name="review" required></div>
+                                            <div class="col-1">5</div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="formInput">
                                     <label for="group">In che gruppo?</label>
@@ -85,7 +91,17 @@
                                         <select name="babboId" id="babboIdSelector" required>
                                             <option value="">Seleziona</option>
                                             <optgroup th:each="group : ${groups}" th:label="${group.name}">
-                                                <option th:each=" member : ${group.members}" th:value="${member}">[[${member}]]</option>
+                                                <span th:each=" member : ${group.members}">
+
+                                                    <option th:if="${member!=user.id}" th:value="${member}">
+                                                        <span  th:each=" person : ${people}">
+                                                            <span th:if="${person.id== member}">
+                                                                [[${person.name}]]
+                                                            </span>
+                                                        </span>
+                                                    </option>
+                                                </span>
+                                                
                                             </optgroup>
                                         </select>
                                     </div>

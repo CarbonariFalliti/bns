@@ -89,10 +89,19 @@ public class AuthCtrl implements ErrorController{
         m.addAttribute("basia", gs.findByBasium(p.getId()));
         m.addAttribute("babbi", gs.findByBabbo(p.getId()));
         List<Group> groups=new ArrayList<Group>();
+        List<Person> people=new ArrayList<Person>();
         for (String gId : p.getGroupsId()) {
-            groups.add(grs.getGroupById(gId));
+            Group g= grs.getGroupById(gId);
+            groups.add(g);
+            for (String personId : g.getMembers()) {
+                Person person=ps.getPersonById(personId);
+                people.add(person);
+            }
         }
         m.addAttribute("groups", groups);
+        m.addAttribute("people", people);
+        
+
         return new ModelAndView("feed");
     }
 
