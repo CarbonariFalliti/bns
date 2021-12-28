@@ -164,5 +164,9 @@ public class AuthCtrl implements ErrorController{
         m.addAttribute("message", message);
         return new ModelAndView("register");
     }
+
+
+
 }
+
 

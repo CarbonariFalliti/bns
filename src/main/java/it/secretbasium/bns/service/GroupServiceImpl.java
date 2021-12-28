@@ -50,5 +50,10 @@ public class GroupServiceImpl implements GroupService {
         }
         return members;
     }
+
+    @Override
+    public List<Group> search(String name) {
+        return repo.findByNameContaining(name);
+    }
     
 }

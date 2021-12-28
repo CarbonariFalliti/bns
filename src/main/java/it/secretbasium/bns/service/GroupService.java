@@ -11,5 +11,6 @@ public interface GroupService {
     Group updateGroup(Group group);
     void deleteGroup(String id);
     List<Person> getMembers(String id);
+    List<Group> search(String name);
     
 }

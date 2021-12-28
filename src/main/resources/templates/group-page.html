@@ -37,45 +37,52 @@
                 <div class="col-md-4">
                     <h2>Membri:</h2>
                     <ul>
-                        <li th:each=" member : ${members}">
-                            <a th:href="@{'/member?id='+${member.id}}">[[${member.name}]]</a>
+                        <li class="show-member" th:each=" member : ${members}">
+                            <!-- <a th:href="@{'/member?id='+${member.id}}"> -->
+                                [[${member.name}]]
+                                
+                                <!-- </a> -->
                         </li>
                     </ul>
+                    
                 </div>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col">
-                            <h3>Regali:</h3>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-3" th:each="regalo : ${gifts}">
-                                        <div class="card" >
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <h3>Regali:</h3>
+                                <div class="container-fluid horizontal-scrollable">
+                                    <div class="row">
+                                        
+                                        <div class="card" th:each="regalo : ${gifts}">
                                             <div class="card-body" >
                                                 <a th:href="@{'/gift?id='+${regalo.id}}">
                                                     <h5 class="card-title">
                                                         [[${regalo.name}]]
                                                     </h5>
                                                 </a>
-                                                    </div>
-                                                    <hr>
-                                                    <div class="card-body">
-                                                        <p class="card-text"><strong>Review:</strong> [[${regalo.review}]] <i class="fas fa-star"></i></p>
-                                                        <p class="card-text">
-                                                            <strong>Babbo:</strong>
-                                                            <span th:each="membro : ${members}" >
-                                                                <a th:href="@{'/member?id='+${regalo.babboId}}">
-                                                                    <span th:if="${regalo.babboId==membro.id}"> [[${membro.name}]]</span>
-                                                                </a>
-                                                            </span>
-                                                        </p>
-                                                        <p class="card-text">
-                                                            <strong>Basium:</strong>
-                                                            <span th:each="membro : ${members}" >
-                                                                <a th:href="@{'/member?id='+${regalo.basiumId}}"><span th:if="${regalo.basiumId==membro.id}"> [[${membro.name}]]</span></a>
-                                                            </span>
-                                                            </p>
-                                                        <p class="card-text"><strong>Data:</strong> [[${regalo.date}]]</p>
-                                                    </div>
+                                            </div>
+                                            <hr>
+                                            <div class="card-body">
+                                                <p class="card-text"><strong>Review:</strong> [[${regalo.review}]] <i class="fas fa-star"></i></p>
+                                                <p class="card-text">
+                                                    <strong>Babbo:</strong>
+                                                    <span class="show-member" th:each="membro : ${members}" >
+                                                        <span th:if="${regalo.babboId==membro.id}"> [[${membro.name}]]
+
+                                                        </span>
+                                                    </span>
+                                                </p>
+                                                <p class="card-text">
+                                                    <strong>Basium:</strong>
+                                                    <span  class="show-member" th:each="membro : ${members}" >
+                                                        
+                                                            <span th:if="${regalo.basiumId==membro.id}"> [[${membro.name}]]</span>
+                                                       
+                                                    </span>
+                                                </p>
+                                                <p class="card-text"><strong>Data:</strong> [[${regalo.date}]]</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -96,18 +103,68 @@
                         </div>
                     </div>
                 </div>
-
+                
             </div>
         </div>
+        
+        
     </main>
-    <footer id="footerContainer"></footer>
+    <div class="card pop-up" id="showMember">
+        <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text"></p>
+        </div>
+    </div>
+    <!-- <footer id="footerContainer"></footer> -->
 </body>
+<div class="card " id="showMember">
+    <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text"></p>
+    </div>
+</div>
 <script>
+    
+    
+    $(".show-member").hover( function(e){
+        var name = $(this).text();
+        console.log(name);
+        $.ajax({
+            url: "/people/name",
+            type: "GET",
+            data: {
+                name: $.trim(name)
+            },
+            success: function(data){
+
+                console.log(data);
+                $("#showMember").find(".card-title").text(name);
+                $("#showMember").find(".card-text").text(data.email);
+                $("#showMember").css({
+                    top: e.clientY,
+                    left: e.clientX
+                }).show();
+            }
+        });
+        
+
+        
+        
+    });
+
+    $("#showMember").mouseleave(function(){
+        $(this).hide();
+    });
+
+
+
+
+    // countdown
     var now = new Date();
     var nextMeeting = new Date($("#nextMeeting").text());
     console.log(nextMeeting);
     var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-    var daysToNextDate = Math.round((now.getTime() - nextMeeting.getTime())/(oneDay)-1);
+    var daysToNextDate = Math.round((now.getTime() - nextMeeting.getTime())/(oneDay));
     document.getElementById("daysToNextDate").innerHTML = daysToNextDate;
     if(nextMeeting.getTime() < now.getTime()){
         document.getElementById("Date").innerHTML = "";

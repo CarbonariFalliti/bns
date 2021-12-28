@@ -68,8 +68,56 @@ main #hero, main #Date {
 main .hidden {
   display: none;
 }
+main .horizontal-scrollable {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+main .horizontal-scrollable .row {
+  display: inline-block;
+  float: none;
+}
+main .horizontal-scrollable .row .card {
+  overflow: hidden;
+  display: inline-block;
+  width: 20vw;
+}
+@media screen and (max-width: 800px) {
+  main .horizontal-scrollable .row .card {
+    width: 40vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  main .horizontal-scrollable .row .card {
+    width: 80vw;
+  }
+}
+
+.pop-up {
+  position: absolute;
+}
+
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+.autocomplete-items {
+  position: absolute;
+  z-index: 99;
+  top: 100%;
+  left: 0;
+}
+.autocomplete-items div {
+  cursor: pointer;
+}
 
 footer#footerContainer {
+  padding-top: 5rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  max-height: 15vh;
+  width: 100%;
   background-color: #b8dcf8;
   border-top-left-radius: 100%;
   padding: 0.5em;
@@ -84,5 +132,5 @@ footer#footerContainer .row {
   align-items: center;
 }
 footer#footerContainer #credits img {
-  width: 80mm;
+  height: 5vh;
 }/*# sourceMappingURL=style.css.map */

@@ -99,4 +99,9 @@ public class GroupCtrl {
         return groupService.updateGroup(group);
     }
 
+    @PostMapping("/search")
+    public List<Group> search(@RequestParam(value = "name") String name) {
+        return groupService.search(name);
+    }
+
 }
