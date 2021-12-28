@@ -130,5 +130,39 @@ public class AuthCtrl implements ErrorController{
         m.addAttribute("user", p);
         return new ModelAndView("help-desk");
     }
+    @GetMapping("/register")
+    public ModelAndView register(
+        @RequestParam(value = "error", required = false) boolean error,
+        @RequestParam(value = "message", required = false) String message
+    ) {
+        ModelAndView mv = new ModelAndView("register");
+        mv.addObject("error", error);
+        mv.addObject("message", message);
+        return mv;
+    }
+
+
+    @GetMapping("/activation")
+    public RedirectView activatePerson(@RequestParam String email) {
+        Person p = ps.getPersonByEmail(email);
+        if(p==null)
+             return new RedirectView("/register?message=Person with email " + email + " does not exist");
+        if(p.isActivated()&&p.getPassword()!=null)
+            return new RedirectView("/register?message=Person with email " + email + " is already activated");
+        p.setActivated(true);
+        ps.updatePerson(p);
+        return new RedirectView("/activated-true?id="+p.getId()+"&message=To activate your account, please complete the registration.");
+        
+    }
+    @GetMapping("/activated-true")
+    public ModelAndView getRegister(Model m,
+        @RequestParam String id,
+        @RequestParam(value = "message", required = false) String message
+    ) {
+        
+        m.addAttribute("user", ps.getPersonById(id));
+        m.addAttribute("message", message);
+        return new ModelAndView("register");
+    }
 }
 

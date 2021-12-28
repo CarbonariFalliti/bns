@@ -24,7 +24,7 @@
             
                 <h1>Effettua il login</h1>
                 <form class="col" method="post" action="/login" id="loginForm">
-                    <div class="alert alert-danger">
+                    <div th:if="${message!=null}" class="alert alert-danger">
                         [[${message}]]
                     </div>
                     <div class="form-group">

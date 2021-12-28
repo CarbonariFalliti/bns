@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.datetime.joda.LocalDateParser;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,8 @@ public class GroupCtrl {
         @RequestParam(value = "groupemail") String groupemail,
         @RequestParam(value = "password") String password,
         @RequestParam(value = "budget") Integer budget,
-        @RequestParam(value = "members") String[] members) {
+        @RequestParam(value = "members") String[] members,
+        @RequestParam(value = "nextDate") String nextDate) {
         
             Group group = groupService.addGroup(new Group());
             group.setName(name);
@@ -42,6 +44,7 @@ public class GroupCtrl {
                 memberList.add(personCtrl.checkPersonExistsAndCreate(member, group.getId()).getId());
             }   
             group.setMembers(memberList);
+            group.setNextDate(LocalDate.parse(nextDate));
             return groupService.updateGroup(group); 
     }
 

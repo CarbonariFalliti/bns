@@ -12,10 +12,17 @@ public class Person {
     private String name;
     private String email;
     private String password;
+    private boolean isActivated;
     private List<String> groupsId;
     
     public List<String> getGroupsId() {
         return groupsId;
+    }
+    public boolean isActivated() {
+        return isActivated;
+    }
+    public void setActivated(boolean isActivated) {
+        this.isActivated = isActivated;
     }
     public void setGroupsId(List<String> groupsId) {
         this.groupsId = groupsId;

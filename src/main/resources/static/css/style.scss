@@ -71,6 +71,9 @@ main{
         flex-direction: column;
         font-family: $title-font;
     }
+    .hidden{
+        display: none;
+    }
 }
 
 

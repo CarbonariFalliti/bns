@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import it.secretbasium.bns.entities.Person;
 import it.secretbasium.bns.service.PersonService;
@@ -56,12 +57,37 @@ public class PersonCtrl {
         ps.addPerson(p);
     }
 
+    @PutMapping("/full-person")
+    public void updatePerson(
+        @RequestParam Person p
+        ) {
+        ps.updatePerson(p);
+    }
 
     @PutMapping("/person")
     public void updatePerson(
-    @RequestParam Person person) {
-    
-        ps.updatePerson(person);
+    @RequestParam String id,
+    @RequestParam String email,
+    @RequestParam String password,
+    @RequestParam String name,
+    @RequestParam(required = false) String[] groupsId) {
+        Person p = ps.getPersonById(id);
+        if (p == null) {
+            throw new IllegalArgumentException("Person with id " + id + " doesn't exist");
+        }
+        p.setEmail(email);
+        p.setPassword(password);
+        p.setName(name);
+        if (groupsId != null) {
+            List<String> groups = new ArrayList<>();
+            for (String groupId : groupsId) {
+                groups.add(groupId);
+            }
+            p.setGroupsId(groups);
+        }
+        
+        ps.updatePerson(p);
+        
     }
 
     @DeleteMapping("/person")
@@ -74,6 +100,7 @@ public class PersonCtrl {
         if (p == null) {
             p = new Person();
             p.setEmail(email);
+            p.setActivated(false);
             ps.addPerson(p);
 
         }
@@ -83,5 +110,6 @@ public class PersonCtrl {
         p.getGroupsId().add(groupId);
         return ps.updatePerson(p);
     }
+   
 
 }

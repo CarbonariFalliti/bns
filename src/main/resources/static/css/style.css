@@ -65,6 +65,9 @@ main #hero, main #Date {
   flex-direction: column;
   font-family: "Montserrat Alternates", sans-serif;
 }
+main .hidden {
+  display: none;
+}
 
 footer#footerContainer {
   background-color: #b8dcf8;
