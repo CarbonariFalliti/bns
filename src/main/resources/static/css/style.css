@@ -5,6 +5,7 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: underline;
   color: inherit;
@@ -17,25 +18,47 @@ a:hover {
 header#navbarContainer {
   border-bottom: 1px solid #e5e5e5;
   padding: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: "flex-end";
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: "flex-end";
+      -ms-flex-pack: "flex-end";
+          justify-content: "flex-end";
   font-family: "Montserrat Alternates", sans-serif;
 }
+
 header#navbarContainer .menuNav {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: "flex-end";
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: "flex-end";
+      -ms-flex-pack: "flex-end";
+          justify-content: "flex-end";
 }
+
 header#navbarContainer .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 header#navbarContainer #imgLogo {
   background-color: #91caf7;
   border-radius: 50%;
 }
+
 header#navbarContainer #titoloNav {
   font-weight: 700;
 }
@@ -46,24 +69,6 @@ main {
   min-height: 90vh;
 }
 
-footer#footerContainer {
-  background-color: #91caf7;
-  border-top-left-radius: 100%;
-  padding: 0.5em;
-  display: flex;
-  align-items: center;
-  justify-content: "space-between";
-  font-family: "Montserrat Alternates", sans-serif;
-}
-footer#footerContainer .row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-footer#footerContainer #credits img {
-  width: 80mm;
-}/*# sourceMappingURL=style.css.map */
-
 .spaced {
   padding: 0 2em;
   margin-bottom: 5em;
@@ -72,3 +77,44 @@ footer#footerContainer #credits img {
 .form-group {
   margin-bottom: 0.5em;
 }
+
+.big-btn {
+  height: 3em;
+  max-width: 12em;
+  font-size: 28px;
+  -webkit-box-shadow: 2px 2px 8px 0px lightgrey;
+          box-shadow: 2px 2px 8px 0px lightgrey;
+}
+
+footer#footerContainer {
+  background-color: #91caf7;
+  border-top-left-radius: 100%;
+  padding: 0.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: "space-between";
+      -ms-flex-pack: "space-between";
+          justify-content: "space-between";
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
+footer#footerContainer .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+footer#footerContainer #credits img {
+  width: 80mm;
+}
+/*# sourceMappingURL=style.css.map */
