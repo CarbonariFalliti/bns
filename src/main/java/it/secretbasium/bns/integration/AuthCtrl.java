@@ -106,7 +106,17 @@ public class AuthCtrl implements ErrorController{
     }
 
     @RequestMapping(value =  "/group-feed", method ={ RequestMethod.GET}   )
-    public ModelAndView feedGroup(Model m,@RequestParam String id){
+    public ModelAndView feedGroup(
+        Model m,
+        @RequestParam String id,
+        @RequestParam(required = false) String userId
+        ){
+        if (userId!=null){
+            Person p=ps.getPersonById(userId);
+            if (p!=null) {
+                m.addAttribute("user", p);
+            }
+        }    
         Group g=grs.getGroupById(id);
         
         m.addAttribute("group", g);
@@ -123,6 +133,7 @@ public class AuthCtrl implements ErrorController{
 
         return new ModelAndView("group-page");
     }
+
 
     @RequestMapping(value =  "/tickets", method ={ RequestMethod.GET}   )
     public ModelAndView tickets(Model m, @RequestParam String id){

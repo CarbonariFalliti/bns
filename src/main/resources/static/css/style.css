@@ -91,6 +91,15 @@ main .horizontal-scrollable .row .card {
     width: 80vw;
   }
 }
+main .horizontal-scrollable .row .card .valutazione .row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: "space-around";
+  margin-top: 1rem;
+}
 
 .pop-up {
   position: absolute;
@@ -112,12 +121,7 @@ main .horizontal-scrollable .row .card {
 }
 
 footer#footerContainer {
-  padding-top: 5rem;
-  position: fixed;
-  bottom: 0;
-  left: 0;
   max-height: 15vh;
-  width: 100%;
   background-color: #b8dcf8;
   border-top-left-radius: 100%;
   padding: 0.5em;

@@ -18,8 +18,15 @@ public class Gift {
     private String basiumId;
     private String groupId;
     private LocalDate date;
+    private double rating;
     
     
+    public double getRating() {
+        return rating;
+    }
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
     public String getId() {
         return id;
     }

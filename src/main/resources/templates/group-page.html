@@ -63,7 +63,7 @@
                                                 </a>
                                             </div>
                                             <hr>
-                                            <div class="card-body">
+                                            <div class="card-body" th:switch="${user}">
                                                 <p class="card-text"><strong>Review:</strong> [[${regalo.review}]] <i class="fas fa-star"></i></p>
                                                 <p class="card-text">
                                                     <strong>Babbo:</strong>
@@ -82,6 +82,26 @@
                                                     </span>
                                                 </p>
                                                 <p class="card-text"><strong>Data:</strong> [[${regalo.date}]]</p>
+                                                <p class="card-text" th:case="null">
+                                                    Effettua il <a href="/login">login</a> per valutare <a href="/login"><i class="fas fa-user-check"></i></a>
+                                                </p>
+                                                <form class="card-text valutazione" th:case="*">
+                                                    <input type="hidden" name="personId" th:value="${user.id}">
+                                                    <input type="hidden" name="giftId" th:value="${regalo.id}" >
+                                                    <div class="formInput" >
+                                                        <label for="review">Vota <i class="fas fa-star"></i></label>
+                                                        
+                                                        <div class="container-fluid">
+                                                            <div class="row">
+                                                                <div class="col-1">1</div>
+                                                                <div class="col"><input type="range" class="form-range" min="1" max="5" name="rating" required></div>
+                                                                <div class="col-1">5</div>
+                                                            </div>
+                                                        </div>
+                                                        <input type="submit" value="Invia">
+                                                            
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -115,16 +135,34 @@
             <p class="card-text"></p>
         </div>
     </div>
-    <!-- <footer id="footerContainer"></footer> -->
-</body>
-<div class="card " id="showMember">
-    <div class="card-body">
-        <h5 class="card-title"></h5>
-        <p class="card-text"></p>
+    <div class="card " id="showMember">
+        <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text"></p>
+        </div>
     </div>
-</div>
+    <footer id="footerContainer"></footer>
+</body>
 <script>
-    
+
+    $(".valutazione").on("submit", function(e){
+        e.preventDefault();
+        var form = $(this);
+        var url = "/vote";
+        var data = form.serialize();
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            success: function(data){
+                form.html("Grazie di aver votato!<i class='fas fa-star'></i>");
+                              
+            }, error: function(data){
+                form.html("hai gia votato questo regalo, furbetto.");
+            }
+           
+        });
+    });
     
     $(".show-member").hover( function(e){
         var name = $(this).text();

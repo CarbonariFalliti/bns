@@ -90,7 +90,11 @@ main{
                 @media screen and (max-width: 600px){
                     width: 80vw;
                 }
-
+                    .valutazione .row{
+                        @include dflexCenter();
+                        @include dflexJustify('space-around');
+                        margin-top: 1rem;
+                    }
                     
                 
             }
@@ -129,12 +133,10 @@ main{
 
 
 footer#footerContainer{
-    padding-top: 5rem;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    
+    
+    
     max-height: 15vh;
-    width: 100%;
     background-color: $snow-color-halfed;
     border-top-left-radius: 100%;
     
